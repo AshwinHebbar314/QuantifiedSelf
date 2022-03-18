@@ -92,7 +92,7 @@ def details():
 
     all_track = sorted(all_track, key=lambda x: x[3], reverse=True)
 
-    return render_template("dashboard.html", username=current_user.name, all_track=all_track)
+    return render_template("dashboard.html", userid = current_user.id,  username=current_user.name, all_track=all_track)
 
 
 @app.route("/logout")
@@ -100,6 +100,25 @@ def details():
 def logout():
     logout_user()
     return redirect("/")
+
+@app.route("/<uid>/edit", methods=["GET", "POST"])
+@login_required
+def edituser(uid):
+    if request.method == "GET":
+        user = User.query.filter_by(id=uid).first()
+        return render_template("edituser.html", user=user)
+    else:
+        users = User.query.all()
+        user = User.query.filter_by(id=uid).first()
+        curr_names = [x.name for x in users]
+        for c in curr_names:
+            if c == request.form["user_name"]:
+                return f"User Already Exist, please <a href = '/{user.id}/edit'>Choose another username</a>"
+        user.name = request.form["user_name"]
+        user.email = request.form["email"]
+        db.session.commit()
+        return redirect("/dashboard")
+
 
     ################################################################
 # TRACKER

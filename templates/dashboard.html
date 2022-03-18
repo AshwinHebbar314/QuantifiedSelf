@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>{{username}}'s Life, Quantified!</h1>
+        <h1 class="display-1">{{username}}'s Life, Quantified!</h1>
         <h2>Your Current Trackers:</h2>
         
         <div>
@@ -46,7 +46,7 @@
             <button type="button" onclick = "document.location='/dashboard/create_tracker'" class="btn btn-primary">Add a new Tracker</button>
         </div>
         <br>
-        <button type="button" class="btn btn-warning">Update User Details</button>
+        <button type="button" onclick = "document.location='/{{userid}}/edit'" class="btn btn-warning">Update User Details</button>
         <button type="button" class="btn btn-danger">Delete {{username}}'s profile!!</button>
         <button type="button" onclick = "document.location='/logout'" class="btn btn-danger">Log Out</button>
     </div>
