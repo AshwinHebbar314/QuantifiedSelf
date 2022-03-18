@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Details: {{tracker.name}}</title>
+</head>
+<body>
+    <div class="container">
+        <h1>{{tracker.name}}</h1>
+        <h3>Additional Details:</h3>
+        <p>{{tracker.details}}</p>
+        <h3>Time Created:</h3>
+        <p>{{tracker.time}}</p>
+        <h3>Possible Inputs:</h3>
+        {% if tracker.type == 1 or tracker.type == 3%}
+        <p>Numberic Data Type</p>
+        {% elif tracker.type == 2 %}
+        <p>{{tracker.choices}}</p>
+        {% elif tracker.type == 4 %}
+        <p>Boolean Data Type</p>
+        {% elif tracker.type == 5 %}
+        <p>Text/Nominal Data Type</p>
+        {% endif %}
+
+        <h3>Timeline Graph:</h3>
+        <div class="plot container">
+            <img class="rounded mx-auto d-block" src="/static/graph.png" alt="Graph">
+        </div>
+        <br>
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Logged Data</th>
+                    <th scope="col">More Details</th>
+                    <th scope="col">Log Time</th>
+                    <th scope="col">Operations</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for log in logs %}
+                <tr>
+                    <td>{{log.value}}</td>
+                    <td>{{log.data}}</td>
+                    <td>{{log.time}}</td>
+                    <td>
+                        <button type="button" onclick = "document.location='/dashboard/{{tracker.id}}/logs/{{log.id}}/edit'" class="btn btn-dark">Edit</button>
+                        <button type="button" onclick = "document.location='/dashboard/{{tracker.id}}/logs/{{log.id}}'" class="btn btn-dark">View</button>
+                        <button type="button" onclick = "document.location='/dashboard/{{tracker.id}}/logs/{{log.id}}/delete'" class="btn btn-danger">Delete</button>
+                {% endfor %}
+        </table>
+        <button type="button" onclick = "document.location='/dashboard/{{tracker.id}}/delete'" class="btn btn-danger">Delete Tracker</button>
+        <button type="button" onclick = "document.location='/dashboard/{{tracker.id}}/log'" class="btn btn-success">Add Log</button>
+    </div>
+
+</body>
+</html>
