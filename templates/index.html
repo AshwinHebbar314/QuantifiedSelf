@@ -1,48 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QuantifiedSelf</title>
 </head>
+
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <a class="navbar-brand" href="/" style="padding-left: 20px;">QuantifiedSelf</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav">
-            <li class="nav-item active">
-              <a class="nav-link" href="/dashboard">Dashboard<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/login">Login</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/logout">log Out</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/signup">Sign-up</a>
-            </li>
-          </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/dashboard">Dashboard<span class="sr-only"></span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">log Out</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/signup">Sign-up</a>
+                </li>
+            </ul>
         </div>
-      </nav>
-    <div>
-       <h1> Welcome to Quantified Self!</h1>
-       <button type="button" onclick = "document.location='/login'"  class="btn btn-success">Sign In</button>
-       <button type="button" onclick = "document.location='/signup'" class="btn btn-success">Sign up</button>
+    </nav>
+    <div class="d-flex align-items-center justify-content-center vh-100">
+        <div class="container justify-content-md-center align-items-center">
+            <div class="container d-flex justify-content-center align-items-center">
+                <h1 class="display-1" style="text-align: center;"> Welcome to QuantifiedSelf</h1>
+            </div>
+            <div class="container d-flex justify-content-center align-items-center">
+                <h5 class="display-5 " style="text-align: center; font-size: 20px"> Quantifying Your Life, One Step at a
+                    Time!</h5><br><br><br>
+            </div>
+            <div class="d-flex justify-content-center align-items-center">
+                <button type="button" onclick="document.location='/login'" class="btn btn-success btn-lg">Sign
+                    In</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                <button type="button" onclick="document.location='/signup'" class="btn btn-success btn-lg">Sign
+                    up</button>
+            </div>
+        </div>
     </div>
-    <div class="container">
-      <footer class="py-3 my-4">
-        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-          <li class="nav-item"><a href="/dashboard" class="nav-link px-2 text-muted">Dashboard</a></li>
-          <li class="nav-item"><a href="/signout" class="nav-link px-2 text-muted">Signout</a></li>
-          <li class="nav-item"><a href="https://github.com/AshwinHebbar314/QuantifiedSelf" class="nav-link px-2 text-muted">GitHub</a></li>
-        </ul>
-        <p class="text-center text-muted">&copy; 20222 Ashwin Hebbar, 21f1003155</p>
-      </footer>
+    <br>
+    <div class="navbar fixed-bottom bg-dark d-flex flex-column">
+        <footer class="py- my-0" style="bottom: 0; width: 100%;">
+            <ul class="nav d-flex justify-content-center pb-3 mb-3 align-items-center justify-content-center ">
+                <li class="nav-item"></li><a href="/dashboard" class="nav-link px-2 text-muted">Dashboard</a></li>
+                <li class="nav-item"><a href="/signout" class="nav-link px-2 text-muted">Signout</a></li>
+                <li class="nav-item"><a href="https://github.com/AshwinHebbar314/QuantifiedSelf"
+                        class="nav-link px-2 text-muted">GitHub</a></li>
+            </ul>
+            <p class="text-center text-muted">&copy; 2022 Ashwin Hebbar | 21f1003155</p>
+        </footer>
     </div>
+
 </html>

@@ -1,5 +1,5 @@
 from flask_login import login_user, logout_user, current_user, login_required
-from flask import current_app as app, render_template, request, redirect
+from flask import current_app as app, render_template, request, redirect, flash
 from application.models import *
 from datetime import datetime
 import matplotlib.pyplot as plt 
@@ -38,7 +38,7 @@ def signup():
         current_users = User.query.with_entities(User.name).all()
         for cuser in current_users:
             if(cuser.name == user):
-                return "User Already Exist, please <a href = '/login'>Sign in using your existing credentials</a>s"
+                return "<h1>User Already Exists!</h1> please <a href = '/login'>Sign in using your existing credentials</a>"
         upd = User(name=user, email=email)
         db.session.add(upd)
         db.session.commit()
