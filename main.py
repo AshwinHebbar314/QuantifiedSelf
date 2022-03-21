@@ -28,10 +28,6 @@ from application.methods import *
 def favicon(): 
     return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
-@app.route('/back.jpg') 
-def loadback(): 
-    return send_from_directory(os.path.join(app.root_path, 'static'), 'back.jpg')
-
 # @app.after_request
 # def add_header(r):
 #     """
