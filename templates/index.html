@@ -8,10 +8,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QuantifiedSelf</title>
+    <style>
+        .glass {
+            background: rgba( 255, 255, 255, 0.15 );
+box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+backdrop-filter: blur( 3px );
+-webkit-backdrop-filter: blur( 13px );
+border-radius: 10px;
+border: 1px solid rgba( 255, 255, 255, 0.18 );
+        }
+    </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <a class="navbar-brand" href="/" style="padding-left: 20px;">QuantifiedSelf</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,24 +43,56 @@
                 </li>
             </ul>
         </div>
-    </nav>
-    <div class="d-flex align-items-center justify-content-center vh-100">
-        <div class="container justify-content-md-center align-items-center">
-            <div class="container d-flex justify-content-center align-items-center">
-                <h1 class="display-1" style="text-align: center;"> Welcome to QuantifiedSelf</h1>
-            </div>
-            <div class="container d-flex justify-content-center align-items-center">
-                <h5 class="display-5 " style="text-align: center; font-size: 20px"> Quantifying Your Life, One Step at a
-                    Time!</h5><br><br><br>
-            </div>
-            <div class="d-flex justify-content-center align-items-center">
-                <button type="button" onclick="document.location='/login'" class="btn btn-success btn-lg">Sign
-                    In</button>&nbsp;&nbsp;&nbsp;&nbsp;
-                <button type="button" onclick="document.location='/signup'" class="btn btn-success btn-lg">Sign
-                    up</button>
-            </div>
+    </nav> -->
+
+
+
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">QuantifiedSelf</a>
+          <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span> -->
+          </button>
+          <div class="collapse navbar-collapse">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="/dashboard">Dashboard</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/login">LogIn</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/signup">SignUp</a>
+              </li>
+            </ul>
         </div>
-    </div>
+        <!-- <button type="button" onclick="document.location='/logout'" class="btn btn-danger">Log Out</button> -->
+        </div>
+      </nav>
+
+
+
+        <div class="d-flex align-items-center justify-content-center vh-100">
+            <div class="container justify-content-md-center align-items-center">
+                <div class = "glass">
+                    <div class="container d-flex justify-content-center align-items-center">
+                        <h1 class="display-1" style="text-align: center;"> Welcome to QuantifiedSelf</h1>
+                    </div>
+                    <div class="container d-flex justify-content-center align-items-center">
+                        <h5 class="display-5 " style="text-align: center; font-size: 20px"> Quantifying Your Life, One Step at a
+                            Time!</h5><br><br><br>
+                    </div>
+                    <div class="d-flex justify-content-center align-items-center">
+                        <button type="button" onclick="document.location='/login'" class="btn btn-success btn-lg">Sign
+                            In</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <button type="button" onclick="document.location='/signup'" class="btn btn-success btn-lg">Sign
+                            up</button><br>
+                    </div>
+                    <br>
+                </div>
+        </div>
+
     <br>
     <div class="navbar fixed-bottom bg-dark d-flex flex-column">
         <footer class="py- my-0" style="bottom: 0; width: 100%;">

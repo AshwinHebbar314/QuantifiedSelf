@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="/" style="padding-left: 20px;">QuantifiedSelf</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,7 +33,37 @@
                 </li>
             </ul>
         </div>
-    </nav>
+    </nav> -->
+
+
+
+
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">QuantifiedSelf</a>
+          <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span> -->
+          </button>
+          <div class="collapse navbar-collapse">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="/dashboard">Dashboard</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/login">LogIn</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/signup">SignUp</a>
+              </li>
+            </ul>
+        </div>
+        <button type="button" onclick="document.location='/logout'" class="btn btn-danger">Log Out</button>
+        </div>
+      </nav>
+
+
+
     <div class="container">
         <h1>Details: {{tracker.name}}</h1>
         <h3>Additional Details:</h3>
@@ -42,7 +72,7 @@
         <p>{{tracker.time}}</p>
         <h3>Possible Inputs:</h3>
         {% if tracker.type == 1 or tracker.type == 3%}
-        <p>Numberic Data Type</p>
+        <p>Numeric/Time Duration Data</p>
         {% elif tracker.type == 2 %}
         <p>{{tracker.choices}}</p>
         {% elif tracker.type == 4 %}
@@ -60,6 +90,7 @@
         <table class="table table-hover">
             <thead>
                 <tr>
+                    <th scope = "col">Log Index</th>
                     <th scope="col">Logged Data</th>
                     <th scope="col">More Details</th>
                     <th scope="col">Log Time</th>
@@ -69,6 +100,7 @@
             <tbody>
                 {% for log in logs %}
                 <tr>
+                    <td>{{loop.index}}
                     <td>{{log.value}}</td>
                     <td>{{log.data}}</td>
                     <td>{{log.time}}</td>

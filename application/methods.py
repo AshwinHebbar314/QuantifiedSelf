@@ -3,6 +3,7 @@ from flask import current_app as app, render_template, request, redirect, flash
 from application.models import *
 from datetime import datetime
 import matplotlib.pyplot as plt 
+import numpy as np
 
 
 def tracker_type(n):
@@ -33,13 +34,21 @@ def signup():
     if request.method == "GET":
         return render_template("signup.html")
     elif request.method == "POST":
+        fname = request.form["fname"]
+        lname = request.form["lname"]
+        passw = request.form["passw"]
+        con_passw = request.form["con_passw"]
+            
+
         user = request.form["user_name"]
         email = request.form["email"]
         current_users = User.query.with_entities(User.name).all()
         for cuser in current_users:
             if(cuser.name == user):
                 return "<h1>User Already Exists!</h1> please <a href = '/login'>Sign in using your existing credentials</a>"
-        upd = User(name=user, email=email)
+        if(passw != con_passw):
+            return "<h1>Password Mismatch!</h1> please <a href = '/signup'>Sign up again</a>"
+        upd = User(fname = fname, lname = lname, name=user, password = passw, email=email)
         db.session.add(upd)
         db.session.commit()
         return f"user {user} added!, please <a href = '/login'> login to access your dashboard </a>"
@@ -51,12 +60,16 @@ def login():
         return render_template("signin.html")
     elif request.method == "POST":
         user = request.form["user_name"]
+        passw = request.form["passw"]
         loginu = User.query.filter_by(name=user).first()
-        try:
-            login_user(loginu)
-        except:
-            return f"User {user} does not exist, you can <a href = '/signup'> Create a new user by clicking here</a>"
-        return details()
+        if(passw == loginu.password):
+            try:
+                login_user(loginu)
+            except:
+                return f"User {user} does not exist, you can <a href = '/signup'> Create a new user by clicking here</a>"
+            return details()
+        else:
+            return f"Wrong Password, please <a href = '/login'> try again </a>"
         # current_users = User.query.with_entities(User.name).all()
         # for u in current_users:
         #   if(user == u.name):
@@ -92,7 +105,7 @@ def details():
 
     all_track = sorted(all_track, key=lambda x: x[3], reverse=True)
 
-    return render_template("dashboard.html", userid = current_user.id,  username=current_user.name, all_track=all_track)
+    return render_template("dashboard.html", userid = current_user.id,  username=current_user.name, all_track=all_track, uname = current_user.fname + " " + current_user.lname, userdet = current_user)
 
 
 @app.route("/logout")
@@ -118,6 +131,17 @@ def edituser(uid):
         user.email = request.form["email"]
         db.session.commit()
         return redirect("/dashboard")
+
+@app.route("/<uid>/delete", methods=["GET"])
+@login_required
+def deleteuser(uid):
+    Logs.query.filter_by(userid=uid).delete()
+    db.session.commit()
+    Tracker.query.filter_by(userid=uid).delete()
+    db.session.commit()
+    User.query.filter_by(id=uid).delete()
+    db.session.commit()
+    return redirect("/")
 
 
     ################################################################
@@ -296,14 +320,17 @@ def create_plot(trackerid):
     tdet = Tracker.query.filter_by(id=trackerid).first()
     if(tdet.type == 1 or tdet.type == 3):
         log = Logs.query.filter_by(tid=trackerid).all()
-        x = [l.value for l in log]
-        y = range(len(x))
-        plt.xlabel(tdet.name)
-        plt.ylabel("Logs")
+        x = [int(l.value) for l in log]
+        y = [str(i) for i in range(1,len(x)+1)]
+        print(x,y)
+        plt.ylabel(tdet.name)
+        plt.xlabel("Logs")
         plt.title(f"Graph for {tdet.name} Tracker")
-        plt.plot(y,x)
+        plt.bar(y,x)
+        # plt.plot(y,x)
         plt.savefig("static/graph.png")
         plt.close()
+
     else:
         d = dict()
         log = Logs.query.filter_by(tid=trackerid).all()

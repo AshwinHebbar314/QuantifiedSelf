@@ -1,4 +1,5 @@
-from flask import Flask, render_template, flash
+import os
+from flask import Flask, render_template, flash, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from application.database import db 
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
@@ -22,7 +23,14 @@ def load_user(user_id):
   return User.query.get(int(user_id))
 
 
-from application.methods import *
+from application.methods import * 
+@app.route('/favicon.ico') 
+def favicon(): 
+    return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico', mimetype='image/vnd.microsoft.icon')
+
+@app.route('/back.jpg') 
+def loadback(): 
+    return send_from_directory(os.path.join(app.root_path, 'static'), 'back.jpg')
 
 # @app.after_request
 # def add_header(r):

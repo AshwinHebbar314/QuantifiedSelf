@@ -11,7 +11,11 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+
+
+
+    <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="/" style="padding-left: 20px;">QuantifiedSelf</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,10 +37,54 @@
                 </li>
             </ul>
         </div>
-    </nav>
+    </nav> -->
+
+
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">QuantifiedSelf</a>
+          <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span> -->
+          </button>
+          <div class="collapse navbar-collapse">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/dashboard">Dashboard</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/login">LogIn</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/signup">SignUp</a>
+              </li>
+            </ul>
+        </div>
+        <button type="button" onclick="document.location='/logout'" class="btn btn-danger">Log Out</button>
+        </div>
+      </nav>
+
+
+
+
     <div class="container">
-        <h1 class="display-1">{{username}}'s Life, Quantified!</h1>
+
+        
+        <h1 class="display-1">{{uname}}'s Life, Quantified!</h1>
+        
+        <div class="card border-secondary mb-3" style="max-width: 100%;">
+            <div class="card-header"><b>User Details</b></div>
+            <div class="card-body text-secondary d-flex flex-row">
+              <h5 class="card-title">Username:&nbsp;</h5>
+              <p class="card-text">{{userdet.name}}</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <h5 class="card-title">User Email:&nbsp;</h5>
+              <p class="card-text">{{userdet.email}}</p>
+            </div>
+        </div>
+
+        
         <h2>Your Current Trackers:</h2>
+        
 
         <div class = "container">
             <table class="table table-striped">
@@ -78,14 +126,13 @@
             <br>
             <button type="button" onclick="document.location='/{{userid}}/edit'" class="btn btn-warning">Update User
                 Details</button>
-            <button type="button" class="btn btn-danger">Delete {{username}}'s profile!!</button>
-            <button type="button" onclick="document.location='/logout'" class="btn btn-danger">Log Out</button>
+                <button type="button" onclick="document.location='/{{userid}}/delete'" class="btn btn-danger">Delete {{username}}'s profile!!</button><br>
         </div>
     </div>
 
     <br>
 
-    <div class="navbar fixed-bottom bg-dark d-flex flex-column">
+    <div class="navbar fixed-bottom  bg-dark d-flex flex-column">
         <footer style="bottom: 0; width: 100%;">
             <ul class="nav d-flex justify-content-center pb-3 mb-3 align-items-center justify-content-center">
                 <li class="nav-item"></li><a href="/dashboard" class="nav-link px-2 text-muted">Dashboard</a></li>
