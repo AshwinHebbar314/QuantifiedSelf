@@ -1,12 +1,8 @@
 from flask_login import login_user, logout_user, current_user, login_required
 from flask import current_app as app, render_template, request, redirect, flash
+
+
 from application.models import *
-from datetime import datetime
-import matplotlib.pyplot as plt 
-import numpy as np
-
-
-
 
 
 from controllers.appfunc import *
