@@ -1,3 +1,8 @@
+"""
+DATABASE MODELS
+"""
+
+
 from .database import db
 from flask_login import UserMixin
 

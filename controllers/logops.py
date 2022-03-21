@@ -1,3 +1,8 @@
+"""
+LOG CRUD OPERATIONS
+"""
+
+
 from flask_login import current_user, login_required
 from flask import current_app as app, render_template, request, redirect
 from application.models import *
@@ -70,15 +75,6 @@ def delete_logs(trackerid, logid):
 
 @app.route("/dashboard/<trackerid>/logs/<logid>/edit", methods=["GET", "POST"])
 def edit_logs(trackerid, logid):
-    # if request.method == "GET":
-    #   log = Logs.query.filter_by(id = logid, tid = trackerid).first()
-    #   return render_template("edit_logs.html", log = log)
-    # elif request.method == "POST":
-    #   log = Logs.query.filter_by(id = logid, tid = trackerid).first()
-    #   log.value = request.form["tval"]
-    #   log.data = request.form["tdet"]
-    #   db.session.commit()
-    #   return redirect("/dashboard")
     tdet = Tracker.query.filter_by(id=trackerid).first()
     log = Logs.query.filter_by(id=logid, tid=trackerid).first()
     if tdet.type == 1 or tdet.type == 3:

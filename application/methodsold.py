@@ -1,3 +1,7 @@
+"""
+OLD METHODS FILE WITH ALL THE METHODS INTACT, USED AS A BACKUP,  DOES NOT AND SHOULD NOT PLAY AN ACTIVE ROLE IN THE FUNCTIONINF OF THE APP
+"""
+
 from flask_login import login_user, logout_user, current_user, login_required
 from flask import current_app as app, render_template, request, redirect, flash
 from application.models import *

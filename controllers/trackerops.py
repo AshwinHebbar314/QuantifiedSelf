@@ -1,3 +1,7 @@
+"""
+TRACKER CRUD OPERATIONS, TRACKER DETAILS DOWNLOAD
+"""
+
 from flask_login import current_user, login_required
 from flask import current_app as app, render_template, request, redirect, send_file
 from application.models import *

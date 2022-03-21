@@ -1,3 +1,7 @@
+"""
+COMMON FILE FOR BRINGING ALL THE METHODS TOGETHER AND MAKING LIFE EASIER
+"""
+
 from flask_login import login_user, logout_user, current_user, login_required
 from flask import current_app as app, render_template, request, redirect, flash
 

@@ -1,3 +1,7 @@
+"""
+MISCLLEANOUS METHODS THAT PLAY A PART IN THE OVERALL APP (GRAPHING, TRACKERTYPE)
+"""
+
 from flask_login import login_required
 from application.models import *
 import matplotlib.pyplot as plt

@@ -1,3 +1,7 @@
+"""
+WHERE ALL THE MAGIC HAPPENS, MAIN METHOD
+"""
+
 import os
 from flask import Flask, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
@@ -29,15 +33,19 @@ def load_user(user_id):
 from application.methods import * 
 @app.route('/favicon.ico') 
 def favicon(): 
+    """FAVICON"""
     return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
-
+#############################################################################################################
+# PASSING API ENDPOINTS
 from application.api import TrackerListAPI
 api.add_resource(TrackerListAPI, '/api/trackers/<string:username>')
 
 from application.api import LogAPI
 api.add_resource(LogAPI, '/api/log/<string:trackerid>','/api/log/delete/<string:logid>')
+#############################################################################################################
 
+# RUNNING THE APP ITSELF
 if __name__ == '__main__':
   app.debug = True
   app.run() 

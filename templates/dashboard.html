@@ -15,78 +15,51 @@
 
 
 
-    <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="/" style="padding-left: 20px;">QuantifiedSelf</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="/dashboard">Dashboard<span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/login">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/logout">log Out</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/signup">Sign-up</a>
-                </li>
-            </ul>
-        </div>
-    </nav> -->
-
-
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-          <a class="navbar-brand" href="/">QuantifiedSelf</a>
-          <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span> -->
-          </button>
-          <div class="collapse navbar-collapse">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/dashboard">Dashboard</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/login">LogIn</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/signup">SignUp</a>
-              </li>
-            </ul>
+            <a class="navbar-brand" href="/">QuantifiedSelf</a>
+            </button>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/dashboard">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">LogIn</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/signup">SignUp</a>
+                    </li>
+                </ul>
+            </div>
+            <button type="button" onclick="document.location='/logout'" class="btn btn-danger">Log Out</button>
         </div>
-        <button type="button" onclick="document.location='/logout'" class="btn btn-danger">Log Out</button>
-        </div>
-      </nav>
+    </nav>
 
 
 
 
     <div class="container">
 
-        
+
         <h1 class="display-1">{{uname}}'s Life, Quantified!</h1>
-        
+
         <div class="card border-secondary mb-3" style="max-width: 100%;">
             <div class="card-header"><b>User Details</b></div>
             <div class="card-body text-secondary d-flex flex-row">
-              <h5 class="card-title">Username:&nbsp;</h5>
-              <p class="card-text">{{userdet.name}}</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <h5 class="card-title">User Email:&nbsp;</h5>
-              <p class="card-text">{{userdet.email}}</p>
+                <h5 class="card-title">Username:&nbsp;</h5>
+                <p class="card-text">{{userdet.name}}</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <h5 class="card-title">User Email:&nbsp;</h5>
+                <p class="card-text">{{userdet.email}}</p>
             </div>
         </div>
 
-        
-        <h2>Your Current Trackers:</h2>
-        
 
-        <div class = "container">
+        <h2>Your Current Trackers:</h2>
+
+
+        <div class="container">
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -104,9 +77,7 @@
                         <td>{{tracker[2]}}</td>
                         <td>{{tracker[3]}}</td>
                         <td>{{tracker[4]}}</td>
-                        <!-- <td><button type="button" onclick = "document.location= '/dashboard/{{tracker[0]}}/log'" class="btn btn-outline-dark"> Add Log
-                            <button type="button" onclick = "document.location= '/dashboard/{{tracker[0]}}/log'" class="btn btn-outline-danger"> Delete Tracker</td>
-                        -->
+
                         <td>
                             <div class="btn-group" role="group" aria-label="Basic outlined example">
                                 <button type="button" onclick="document.location= '/dashboard/{{tracker[0]}}/details'"
@@ -126,8 +97,10 @@
             <br>
             <button type="button" onclick="document.location='/{{userid}}/edit'" class="btn btn-warning">Update User
                 Details</button>
-                <button type="button" onclick="document.location='/{{userid}}/delete'" class="btn btn-danger">Delete {{username}}'s profile!!</button>
-                <button type="button" onclick="document.location='/dashboard/download'" class="btn btn-success">Download User Data</button><br>
+            <button type="button" onclick="document.location='/{{userid}}/delete'" class="btn btn-danger">Delete
+                {{username}}'s profile!!</button>
+            <button type="button" onclick="document.location='/dashboard/download'" class="btn btn-success">Download
+                User Data</button><br>
         </div>
     </div>
 
