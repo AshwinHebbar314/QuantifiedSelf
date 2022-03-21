@@ -1,3 +1,7 @@
+"""
+MAINLY FUNCTIONAL PARTS OF THE APP, LOGIN, LOGOUT, DASHBAORD, LANDING PAGES
+"""
+
 from flask_login import login_user, logout_user, login_required
 from flask import current_app as app, render_template, request, redirect
 from application.models import *
