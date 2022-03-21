@@ -1,10 +1,9 @@
-from flask_login import login_user, logout_user, current_user, login_required
-from flask import current_app as app, render_template, request, redirect, flash
+from flask_login import current_user, login_required
+from flask import current_app as app, render_template, request, redirect
 from application.models import *
 from datetime import datetime
-import matplotlib.pyplot as plt 
-import numpy as np
 from controllers.miscmethods import *
+
 
 @app.route("/dashboard/<trackerid>/log", methods=["GET", "POST"])
 @login_required

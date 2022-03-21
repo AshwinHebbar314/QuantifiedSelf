@@ -41,32 +41,59 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">QuantifiedSelf</a>
-          <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <a class="navbar-brand" href="#">QuantifiedSelf</a>
+            <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span> -->
-          </button>
-          <div class="collapse navbar-collapse">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="/dashboard">Dashboard</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/login">LogIn</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/signup">SignUp</a>
-              </li>
-            </ul>
+            </button>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/dashboard">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">LogIn</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/signup">SignUp</a>
+                    </li>
+                </ul>
+            </div>
+            <button type="button" onclick="document.location='/logout'" class="btn btn-danger">Log Out</button>
         </div>
-        <button type="button" onclick="document.location='/logout'" class="btn btn-danger">Log Out</button>
-        </div>
-      </nav>
+    </nav>
 
 
 
     <div class="container">
         <h1>Details: {{tracker.name}}</h1>
-        <h3>Additional Details:</h3>
+        <div class="card">
+            <div class="card-header">
+                <h5>Time Created:</h5>
+                <p>{{tracker.time}}</p>
+            </div>
+            <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                    <p>Possible Inputs:</p>
+                    <footer class="blockquote-footer">
+                        {% if tracker.type == 1 or tracker.type == 3%}
+                        <p>Numeric/Time Duration Data</p>
+                        {% elif tracker.type == 2 %}
+                        <p>{{tracker.choices}}</p>
+                        {% elif tracker.type == 4 %}
+                        <p>Boolean Data Type</p>
+                        {% elif tracker.type == 5 %}
+                        <p>Text/Nominal Data Type</p>
+                        {% endif %}
+                    </footer>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+
+        <!-- <h3>Additional Details:</h3>
         <p>{{tracker.details}}</p>
         <h3>Time Created:</h3>
         <p>{{tracker.time}}</p>
@@ -79,7 +106,7 @@
         <p>Boolean Data Type</p>
         {% elif tracker.type == 5 %}
         <p>Text/Nominal Data Type</p>
-        {% endif %}
+        {% endif %} -->
 
         <h3>Timeline Graph:</h3>
         <div class="plot container">
@@ -90,7 +117,7 @@
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th scope = "col">Log Index</th>
+                    <th scope="col">Log Index</th>
                     <th scope="col">Logged Data</th>
                     <th scope="col">More Details</th>
                     <th scope="col">Log Time</th>
@@ -119,6 +146,8 @@
             class="btn btn-danger">Delete Tracker</button>
         <button type="button" onclick="document.location='/dashboard/{{tracker.id}}/log'" class="btn btn-success">Add
             Log</button>
+        <button type="button" onclick="document.location='/dashboard/{{tracker.id}}/download'"
+            class="btn btn-success">Download Tracker Data</button>
     </div>
     <br>
     <div class="navbar navbar-fixed-bottom bg-dark d-flex flex-column">

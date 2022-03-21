@@ -1,10 +1,10 @@
-from flask_login import login_user, logout_user, current_user, login_required
-from flask import current_app as app, render_template, request, redirect, flash
+from flask_login import current_user, login_required
+from flask import current_app as app, render_template, request, redirect, send_file
 from application.models import *
 from datetime import datetime
-import matplotlib.pyplot as plt 
-import numpy as np
 from controllers.miscmethods import *
+import os
+
 
 @app.route("/dashboard/create_tracker", methods=["GET", "POST"])
 @login_required
@@ -45,3 +45,16 @@ def delete_tracker(tid):
     tracker = Tracker.query.filter_by(id=tid).delete()
     db.session.commit()
     return redirect("/dashboard")
+
+@app.route("/dashboard/<tid>/download", methods=["GET"])
+@login_required
+def download_tracker_data(tid):
+    t = Tracker.query.filter_by(id=tid).first()
+    os.makedirs(os.path.dirname(f"download/{t.name}.csv"), exist_ok=True)
+    f = open(f"download/{t.name}.csv", "w")
+    logs = Logs.query.filter_by(tid=t.id).all()
+    f.write("value,time,date\n")
+    for l in logs:
+        f.write(f"{l.value},{l.time},{l.data}\n")
+    f.close()
+    return send_file(f"download/{t.name}.csv", as_attachment=True)

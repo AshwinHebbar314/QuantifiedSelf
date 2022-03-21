@@ -1,11 +1,9 @@
-from flask_login import login_user, logout_user, current_user, login_required
-from flask import current_app as app, render_template, request, redirect, flash
+from flask_login import current_user, login_required
+from flask import current_app as app, render_template, request, redirect, send_file
 from application.models import *
-from datetime import datetime
-import matplotlib.pyplot as plt 
-import numpy as np
 from controllers.miscmethods import *
 from controllers.logops import *
+import shutil, os
 
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
@@ -69,11 +67,15 @@ def edituser(uid):
         users = User.query.all()
         user = User.query.filter_by(id=uid).first()
         curr_names = [x.name for x in users]
-        for c in curr_names:
-            if c == request.form["user_name"]:
-                return f"User Already Exist, please <a href = '/{user.id}/edit'>Choose another username</a>"
+        if user.name != request.form["user_name"]:
+            for c in curr_names:
+                if c == request.form["user_name"]:
+                    return f"User Already Exist, please <a href = '/{user.id}/edit'>Choose another username</a>"
         user.name = request.form["user_name"]
         user.email = request.form["email"]
+        user.fname = request.form["fname"]
+        user.lname = request.form["lname"]
+        user.password = request.form["passw"]
         db.session.commit()
         return redirect("/dashboard")
 
@@ -88,3 +90,21 @@ def deleteuser(uid):
     db.session.commit()
     return redirect("/")
 
+@app.route("/dashboard/download", methods=["GET"])
+@login_required
+def download_user_data():
+    try:
+        shutil.rmtree('download')
+        return redirect("/dashboard/download")
+    except:
+        trackers = Tracker.query.filter_by(userid=current_user.id).all()
+        for t in trackers:
+            os.makedirs(os.path.dirname(f"download/{t.name}.csv"), exist_ok=True)
+            f = open(f"download/{t.name}.csv", "w")
+            logs = Logs.query.filter_by(tid=t.id).all()
+            f.write("value,time,date\n")
+            for l in logs:
+                f.write(f"{l.value},{l.time},{l.data}\n")
+            f.close()
+        shutil.make_archive(f"{current_user.name}", 'zip', root_dir = 'download')
+        return send_file(f"{current_user.name}.zip", as_attachment=True)

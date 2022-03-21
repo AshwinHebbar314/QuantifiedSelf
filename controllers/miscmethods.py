@@ -1,9 +1,7 @@
-from flask_login import login_user, logout_user, current_user, login_required
-from flask import current_app as app, render_template, request, redirect, flash
+from flask_login import login_required
 from application.models import *
-from datetime import datetime
-import matplotlib.pyplot as plt 
-import numpy as np
+import matplotlib.pyplot as plt
+
 
 def tracker_type(n):
     n = int(n)
