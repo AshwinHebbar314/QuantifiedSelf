@@ -39,8 +39,6 @@ def tracker_details(tid):
     return render_template("tracker_details.html", tracker=tracker, logs=logs)
 
 
-
-
 @app.route("/dashboard/<tid>/delete", methods=["GET"])
 @login_required
 def delete_tracker(tid):
@@ -49,6 +47,28 @@ def delete_tracker(tid):
     tracker = Tracker.query.filter_by(id=tid).delete()
     db.session.commit()
     return redirect("/dashboard")
+
+
+
+@app.route("/dashboard/<tid>/edit", methods=["GET", "POST"])
+@login_required
+def edit_tracker(tid):
+    tracker = Tracker.query.filter_by(id=tid).first()
+    if request.method == "GET":
+        return render_template("edit_tracker.html", tracker=tracker, type = tracker_type(tracker.type))
+    elif request.method == "POST":
+        name = request.form["tname"]
+        details = request.form["tdet"]
+        choices = request.form["mulcho"]
+        choices = str(choices.split(' '))
+        upd = Tracker.query.filter_by(id=tid).first()
+        upd.name = name
+        upd.details = details
+        if(tracker.type in [5, '5']):
+            upd.choices = choices
+        db.session.commit()
+        return redirect(f"/dashboard/{tracker.id}/details")
+
 
 @app.route("/dashboard/<tid>/download", methods=["GET"])
 @login_required
@@ -62,3 +82,4 @@ def download_tracker_data(tid):
         f.write(f"{l.value},{l.time},{l.data}\n")
     f.close()
     return send_file(f"download/{t.name}.csv", as_attachment=True)
+

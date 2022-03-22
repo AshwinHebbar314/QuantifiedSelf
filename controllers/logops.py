@@ -28,7 +28,7 @@ def addlog(trackerid):
                        value=value, data=details, time=time)
             db.session.add(upd)
             db.session.commit()
-            return redirect("/dashboard")
+            return redirect(f"/dashboard/{trackerid}/details")
 
     elif tdet.type == 2 or tdet.type == 4:
         if request.method == "GET":
@@ -47,7 +47,7 @@ def addlog(trackerid):
                        value=value, data=details, time=time)
             db.session.add(upd)
             db.session.commit()
-            return redirect("/dashboard")
+            return redirect(f"/dashboard/{trackerid}/details")
 
     elif tdet.type == 5:
         if request.method == "GET":
@@ -62,7 +62,7 @@ def addlog(trackerid):
                        value=value, data=details, time=time)
             db.session.add(upd)
             db.session.commit()
-            return redirect("/dashboard")
+            return redirect(f"/dashboard/{trackerid}/details")
 
 
 @app.route("/dashboard/<trackerid>/logs/<logid>/delete", methods=["GET"])
@@ -70,7 +70,7 @@ def addlog(trackerid):
 def delete_logs(trackerid, logid):
     Logs.query.filter_by(id=logid, tid=trackerid).delete()
     db.session.commit()
-    return redirect("/dashboard")
+    return redirect(f"/dashboard/{trackerid}/details")
 
 
 @app.route("/dashboard/<trackerid>/logs/<logid>/edit", methods=["GET", "POST"])
@@ -86,7 +86,7 @@ def edit_logs(trackerid, logid):
             log.value = request.form["tval"]
             log.data = request.form["tdet"]
             db.session.commit()
-            return redirect("/dashboard")
+            return redirect(f"/dashboard/{trackerid}/details")
 
     elif tdet.type == 2 or tdet.type == 4:
         if request.method == "GET":
@@ -101,7 +101,7 @@ def edit_logs(trackerid, logid):
             log.value = request.form["tval"]
             log.data = request.form["tdet"]
             db.session.commit()
-            return redirect("/dashboard")
+            return redirect(f"/dashboard/{trackerid}/details")
 
     elif tdet.type == 5:
         if request.method == "GET":
@@ -112,7 +112,7 @@ def edit_logs(trackerid, logid):
             log.value = request.form["tval"]
             log.data = request.form["tdet"]
             db.session.commit()
-            return redirect("/dashboard")
+            return redirect(f"/dashboard/{trackerid}/details")
 
 @app.route("/dashboard/<trackerid>/logs/<logid>", methods=["GET"])
 @login_required

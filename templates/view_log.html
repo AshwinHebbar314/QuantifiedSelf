@@ -34,16 +34,20 @@
   </nav>
 
 
-
+  <br>
   <div class="container">
-    <h1>Log Details: {{tracker.name}}</h1>
-    <div>
-      <h3>Date: {{log.id}}</h3>
-      <h3>Time: {{log.time}}</h3>
-      <h3>Value: {{log.value}}</h3>
-      <h3>Details: {{log.data}}</h3>
-
+    <div class="card">
+      <div class="card-header">
+        <h1>Log Details: {{tracker.name}}</h1>
+      </div>
+      <div class="card-body">
+        <h3>Log Id: {{log.id}}</h3>
+        <h3>Log Time: {{log.time}}</h3>
+        <h3>Value: {{log.value}}</h3>
+        <h3>Details: {{log.data}}</h3>
+      </div>
     </div>
+
 
     <br>
     <div class="navbar fixed-bottom bg-dark d-flex flex-column">
